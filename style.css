@@ -19,6 +19,7 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .site-wrapper {
@@ -62,6 +63,7 @@ body {
     color: inherit;
     display: block;
     transition: opacity 0.3s ease;
+    touch-action: manipulation;
 }
 
 .project-link:hover {
@@ -135,9 +137,23 @@ body {
         padding: 30px 20px;
     }
 
+    .main-header {
+        margin-bottom: 40px;
+    }
+
     .header-metadata {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .project-item {
+        margin-bottom: 40px;
+    }
+
+    .project-title {
+        font-size: clamp(1.5rem, 7vw, 3rem);
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     .project-body {
@@ -146,11 +162,17 @@ body {
         gap: 20px;
     }
 
-    .project-title {
-        font-size: 3rem;
-    }
-
     .project-divider {
         margin-top: 30px;
+    }
+
+    .main-footer {
+        margin-top: 40px;
+        padding-top: 20px;
+    }
+
+    .footer-metadata {
+        flex-direction: column;
+        gap: 10px;
     }
 }
