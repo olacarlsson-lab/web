@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integritetspolicy – Konstappen</title>
+    <meta name="description" content="Integritetspolicy för Konstappen – iOS-appen för VGR:s konstsamling.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .page-hero {
+            padding: 60px 0 50px;
+            border-bottom: 1px solid var(--divider);
+            margin-bottom: 70px;
+        }
+
+        .page-badge {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 7vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        .policy-sections {
+            max-width: 780px;
+        }
+
+        .policy-section {
+            border-top: 1px solid var(--divider);
+            padding: 40px 0;
+        }
+
+        .policy-section:last-child {
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .policy-heading {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .policy-text {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+        }
+
+        .policy-text + .policy-text {
+            margin-top: 14px;
+        }
+
+        .policy-list {
+            list-style: none;
+            margin-top: 14px;
+        }
+
+        .policy-list li {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .policy-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .updated-date {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+            margin-bottom: 50px;
+        }
+
+        .nav-link {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        .nav-link.current {
+            color: var(--text);
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <header class="main-header">
+            <div class="header-metadata">
+                <span class="meta-item">FOLIO / 2026</span>
+                <span class="meta-item">AUTHOR / OLA CARLSSON</span>
+                <span class="meta-item">BASE / SWEDEN</span>
+            </div>
+            <div class="header-divider"></div>
+        </header>
+
+        <main>
+            <a href="../" class="back-link">← KONSTAPPEN</a>
+            <div class="nav-links">
+                <a href="../support/" class="nav-link">SUPPORT</a>
+                <a href="../privacy/" class="nav-link current">INTEGRITETSPOLICY</a>
+                <a href="../terms/" class="nav-link">ANVÄNDARVILLKOR</a>
+            </div>
+
+            <section class="page-hero">
+                <span class="page-badge">KONSTAPPEN / INTEGRITETSPOLICY</span>
+                <h1 class="page-title">INTEGRITETS&shy;POLICY</h1>
+            </section>
+
+            <p class="updated-date">SENAST UPPDATERAD / MARS 2026</p>
+
+            <div class="policy-sections">
+                <div class="policy-section">
+                    <h2 class="policy-heading">INLEDNING</h2>
+                    <p class="policy-text">
+                        Konstappen är utvecklad av Ola Carlsson som ett fritidsprojekt. Din integritet är viktig. Denna policy förklarar vilken information appen samlar in, hur den används och dina rättigheter.
+                    </p>
+                    <p class="policy-text">
+                        Kortversionen: vi samlar inte in personuppgifter. Appen kräver ingen registrering och lagrar ingenting om dig.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">INFORMATION VI SAMLAR IN</h2>
+                    <p class="policy-text">Konstappen samlar <strong>inte</strong> in någon personlig information. Specifikt:</p>
+                    <ul class="policy-list">
+                        <li>Inget konto eller inloggning krävs</li>
+                        <li>Vi samlar inte in namn, e-post eller annan identifierande information</li>
+                        <li>Vi lagrar inte din sökhistorik på våra servrar</li>
+                        <li>Vi delar inte data med tredje part i marknadsföringssyfte</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">TREDJEPARTSDATA – VGR:s API</h2>
+                    <p class="policy-text">
+                        Appen hämtar information om konstverk från Västra Götalandsregionens öppna API. Denna förfrågan skickas direkt från din enhet till VGR:s servrar. Din IP-adress kan loggas av VGR:s infrastruktur i enlighet med deras egna dataskyddspolicyer.
+                    </p>
+                    <p class="policy-text">
+                        Konstappen ansvarar inte för VGR:s datahantering. Vi rekommenderar att du läser VGR:s integritetspolicy för mer information.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">APPLE APP STORE OCH DIAGNOSTIK</h2>
+                    <p class="policy-text">
+                        Apple kan samla in aggregerad, anonym diagnostik- och kraschdata via iOS och App Store om du har aktiverat detta i dina iPhone-inställningar. Denna data kontrolleras av Apple och Ola Carlsson har enbart tillgång till aggregerade kraschrapporter utan identifierande information.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">LOKALA DATA PÅ DIN ENHET</h2>
+                    <p class="policy-text">
+                        Konstappen kan spara tillfälliga cachefiler lokalt på din enhet för att förbättra prestanda (t.ex. cachai bilder). Dessa filer lämnar aldrig din enhet och raderas när du avinstallerar appen.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">BARN</h2>
+                    <p class="policy-text">
+                        Appen riktar sig inte specifikt till barn under 13 år. Eftersom vi inte samlar in någon personinformation finns det inga ytterligare begränsningar för yngre användare.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">ÄNDRINGAR I DENNA POLICY</h2>
+                    <p class="policy-text">
+                        Vid eventuella ändringar i integritetspolicyn uppdateras denna sida. Det datum den senast uppdaterades visas längst upp på sidan.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">KONTAKT</h2>
+                    <p class="policy-text">
+                        Har du frågor om integritetspolicyn? Hör av dig till:<br>
+                        <a href="mailto:ola@olacarlsson.com" style="color: var(--text); font-weight: 600;">ola@olacarlsson.com</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-metadata">
+                <span class="meta-item">BUILT FOR FUN</span>
+                <span class="meta-item">OLA CARLSSON © 2026</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

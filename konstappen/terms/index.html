@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Användarvillkor – Konstappen</title>
+    <meta name="description" content="Användarvillkor för Konstappen – iOS-appen för VGR:s konstsamling.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .page-hero {
+            padding: 60px 0 50px;
+            border-bottom: 1px solid var(--divider);
+            margin-bottom: 70px;
+        }
+
+        .page-badge {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 7vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        .policy-sections {
+            max-width: 780px;
+        }
+
+        .policy-section {
+            border-top: 1px solid var(--divider);
+            padding: 40px 0;
+        }
+
+        .policy-section:last-child {
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .policy-heading {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .policy-text {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+        }
+
+        .policy-text + .policy-text {
+            margin-top: 14px;
+        }
+
+        .policy-list {
+            list-style: none;
+            margin-top: 14px;
+        }
+
+        .policy-list li {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .policy-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .updated-date {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+            margin-bottom: 50px;
+        }
+
+        .nav-link {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        .nav-link.current {
+            color: var(--text);
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <header class="main-header">
+            <div class="header-metadata">
+                <span class="meta-item">FOLIO / 2026</span>
+                <span class="meta-item">AUTHOR / OLA CARLSSON</span>
+                <span class="meta-item">BASE / SWEDEN</span>
+            </div>
+            <div class="header-divider"></div>
+        </header>
+
+        <main>
+            <a href="../" class="back-link">← KONSTAPPEN</a>
+            <div class="nav-links">
+                <a href="../support/" class="nav-link">SUPPORT</a>
+                <a href="../privacy/" class="nav-link">INTEGRITETSPOLICY</a>
+                <a href="../terms/" class="nav-link current">ANVÄNDARVILLKOR</a>
+            </div>
+
+            <section class="page-hero">
+                <span class="page-badge">KONSTAPPEN / ANVÄNDARVILLKOR</span>
+                <h1 class="page-title">ANVÄNDAR&shy;VILLKOR</h1>
+            </section>
+
+            <p class="updated-date">SENAST UPPDATERAD / MARS 2026</p>
+
+            <div class="policy-sections">
+                <div class="policy-section">
+                    <h2 class="policy-heading">GODKÄNNANDE AV VILLKOR</h2>
+                    <p class="policy-text">
+                        Genom att ladda ner eller använda Konstappen godkänner du dessa användarvillkor. Om du inte godkänner villkoren ska du inte använda appen.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">OM APPEN</h2>
+                    <p class="policy-text">
+                        Konstappen är ett inofficiellt, icke-kommersiellt projekt utvecklat av Ola Carlsson. Appen är inte knuten till eller sponsrad av Västra Götalandsregionen (VGR). Data om konstverk hämtas från VGR:s öppna API och presenteras i informationssyfte.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">TILLÅTEN ANVÄNDNING</h2>
+                    <p class="policy-text">Du får använda appen för personliga och icke-kommersiella ändamål. Det är inte tillåtet att:</p>
+                    <ul class="policy-list">
+                        <li>Använda appen på ett sätt som bryter mot tillämplig lag</li>
+                        <li>Försöka extrahera, kopiera eller vidaredistribuera appens källkod</li>
+                        <li>Använda appen för att masshämta eller scrapa data från VGR:s API i strid med VGR:s villkor</li>
+                        <li>Anpassa, modifiera eller skapa derivatverk baserade på appen utan tillstånd</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">INNEHÅLL OCH UPPHOVSRÄTT</h2>
+                    <p class="policy-text">
+                        Information och bilder om konstverk tillhör respektive rättighetsinnehavare. VGR tillhandahåller data via sitt öppna API under egna villkor. Konstappen gör inga anspråk på äganderätten till detta innehåll.
+                    </p>
+                    <p class="policy-text">
+                        Appens gränssnitt, design och kod ägs av Ola Carlsson.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">TILLGÄNGLIGHET OCH ÄNDRINGAR</h2>
+                    <p class="policy-text">
+                        Appen tillhandahålls i befintligt skick ("as is"). Vi garanterar inte att appen alltid är tillgänglig, felfri eller fullständig. Vi förbehåller oss rätten att ändra, pausa eller avsluta appen när som helst utan förvarning.
+                    </p>
+                    <p class="policy-text">
+                        VGR:s API är en extern tjänst och vi ansvarar inte för dess tillgänglighet eller riktigheten i dess data.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">ANSVARSBEGRÄNSNING</h2>
+                    <p class="policy-text">
+                        Ola Carlsson ansvarar inte för direkta eller indirekta skador som uppstår vid användning av appen eller vid avbrott i tjänsten. Appen används på eget ansvar.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">TILLÄMPLIG LAG</h2>
+                    <p class="policy-text">
+                        Dessa villkor regleras av svensk lag. Eventuella tvister ska avgöras i svensk domstol.
+                    </p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-heading">KONTAKT</h2>
+                    <p class="policy-text">
+                        Frågor om användarvillkoren skickas till:<br>
+                        <a href="mailto:ola@olacarlsson.com" style="color: var(--text); font-weight: 600;">ola@olacarlsson.com</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-metadata">
+                <span class="meta-item">BUILT FOR FUN</span>
+                <span class="meta-item">OLA CARLSSON © 2026</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

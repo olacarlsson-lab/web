@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konstappen – Utforska VGR:s konstsamling</title>
+    <meta name="description" content="Konstappen låter dig utforska och söka i Västra Götalandsregionens konstsamling direkt från din iPhone.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .app-hero {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--divider);
+            margin-bottom: 80px;
+        }
+
+        .app-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .app-title {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 12vw, 9rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+
+        .app-tagline {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            max-width: 560px;
+            line-height: 1.5;
+            margin-bottom: 50px;
+        }
+
+        .app-store-btn {
+            display: inline-block;
+            background: var(--text);
+            color: var(--bg);
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            padding: 16px 32px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .app-store-btn:hover {
+            opacity: 0.8;
+        }
+
+        .features-section {
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 60px 80px;
+        }
+
+        .feature-item {
+            border-top: 1px solid var(--divider);
+            padding-top: 30px;
+        }
+
+        .feature-number {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+        }
+
+        .about-section {
+            border-top: 1px solid var(--divider);
+            padding-top: 60px;
+            margin-bottom: 80px;
+        }
+
+        .about-text {
+            font-size: 16px;
+            max-width: 700px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .about-text + .about-text {
+            margin-top: 20px;
+        }
+
+        .links-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .inline-link {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 4px;
+            transition: opacity 0.3s ease;
+        }
+
+        .inline-link:hover {
+            opacity: 0.6;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <header class="main-header">
+            <div class="header-metadata">
+                <span class="meta-item">FOLIO / 2026</span>
+                <span class="meta-item">AUTHOR / OLA CARLSSON</span>
+                <span class="meta-item">BASE / SWEDEN</span>
+            </div>
+            <div class="header-divider"></div>
+        </header>
+
+        <main>
+            <a href="/" class="back-link">← TILLBAKA TILL PORTFOLION</a>
+
+            <section class="app-hero">
+                <span class="app-badge">KONST / iOS-APP</span>
+                <h1 class="app-title">KONST&shy;APPEN</h1>
+                <p class="app-tagline">Utforska Västra Götalandsregionens konstsamling – tusentals verk i din ficka.</p>
+                <a href="#" class="app-store-btn">HÄMTA PÅ APP STORE →</a>
+            </section>
+
+            <section class="features-section">
+                <p class="section-label">FUNKTIONER</p>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <p class="feature-number">01</p>
+                        <h2 class="feature-title">SÖK</h2>
+                        <p class="feature-desc">Sök på konstnär, titel, plats eller teknik i hela VGR:s samling om tusentals verk.</p>
+                    </div>
+                    <div class="feature-item">
+                        <p class="feature-number">02</p>
+                        <h2 class="feature-title">UTFORSKA</h2>
+                        <p class="feature-desc">Bläddra bland konstverk, se bilder och läs detaljerad information om varje objekt.</p>
+                    </div>
+                    <div class="feature-item">
+                        <p class="feature-number">03</p>
+                        <h2 class="feature-title">FILTRERA</h2>
+                        <p class="feature-desc">Filtrera samlingen efter teknik, år, konstnär eller geografisk plats.</p>
+                    </div>
+                    <div class="feature-item">
+                        <p class="feature-number">04</p>
+                        <h2 class="feature-title">GRATIS</h2>
+                        <p class="feature-desc">Helt gratis att hämta och använda. Ingen registrering, inga prenumerationer.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <p class="section-label">OM APPEN</p>
+                <p class="about-text">
+                    Konstappen är ett inofficiellt verktyg för att utforska Västra Götalandsregionens offentliga konstsamling. Data hämtas från VGR:s öppna API och presenteras i ett enkelt, snabbt och tillgängligt gränssnitt.
+                </p>
+                <p class="about-text">
+                    Appen är skapad av Ola Carlsson som ett fritidsprojekt i syfte att göra kulturarvet mer tillgängligt för allmänheten.
+                </p>
+                <div class="links-row">
+                    <a href="support/" class="inline-link">SUPPORT</a>
+                    <a href="privacy/" class="inline-link">INTEGRITETSPOLICY</a>
+                    <a href="terms/" class="inline-link">ANVÄNDARVILLKOR</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-metadata">
+                <span class="meta-item">BUILT FOR FUN</span>
+                <span class="meta-item">OLA CARLSSON © 2026</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
