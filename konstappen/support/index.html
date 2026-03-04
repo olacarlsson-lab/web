@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support – Konstappen</title>
+    <meta name="description" content="Support och hjälp för Konstappen – iOS-appen för VGR:s konstsamling.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .page-hero {
+            padding: 60px 0 50px;
+            border-bottom: 1px solid var(--divider);
+            margin-bottom: 70px;
+        }
+
+        .page-badge {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        .content-section {
+            margin-bottom: 70px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .faq-list {
+            list-style: none;
+        }
+
+        .faq-item {
+            border-top: 1px solid var(--divider);
+            padding: 28px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .faq-q {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .faq-a {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            max-width: 680px;
+        }
+
+        .contact-block {
+            border-top: 1px solid var(--divider);
+            padding-top: 40px;
+        }
+
+        .contact-email {
+            font-family: var(--font-heading);
+            font-size: clamp(1.4rem, 4vw, 2.5rem);
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 2px solid var(--text);
+            padding-bottom: 4px;
+            display: inline-block;
+            margin-top: 16px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-email:hover {
+            opacity: 0.6;
+        }
+
+        .contact-note {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+            margin-bottom: 50px;
+        }
+
+        .nav-link {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        .nav-link.current {
+            color: var(--text);
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <header class="main-header">
+            <div class="header-metadata">
+                <span class="meta-item">FOLIO / 2026</span>
+                <span class="meta-item">AUTHOR / OLA CARLSSON</span>
+                <span class="meta-item">BASE / SWEDEN</span>
+            </div>
+            <div class="header-divider"></div>
+        </header>
+
+        <main>
+            <a href="../" class="back-link">← KONSTAPPEN</a>
+            <div class="nav-links">
+                <a href="../support/" class="nav-link current">SUPPORT</a>
+                <a href="../privacy/" class="nav-link">INTEGRITETSPOLICY</a>
+                <a href="../terms/" class="nav-link">ANVÄNDARVILLKOR</a>
+            </div>
+
+            <section class="page-hero">
+                <span class="page-badge">KONSTAPPEN / SUPPORT</span>
+                <h1 class="page-title">SUPPORT</h1>
+            </section>
+
+            <section class="content-section">
+                <p class="section-label">VANLIGA FRÅGOR</p>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <p class="faq-q">Vad är Konstappen?</p>
+                        <p class="faq-a">Konstappen är en gratis iOS-app som låter dig söka och utforska Västra Götalandsregionens (VGR) offentliga konstsamling. Samlingen innehåller tusentals konstverk på offentliga platser i regionen.</p>
+                    </li>
+                    <li class="faq-item">
+                        <p class="faq-q">Kostar appen något?</p>
+                        <p class="faq-a">Nej, Konstappen är helt gratis att ladda ner och använda. Det finns inga köp i appen och ingen prenumeration.</p>
+                    </li>
+                    <li class="faq-item">
+                        <p class="faq-q">Appen visar felaktiga uppgifter om ett konstverk – vad gör jag?</p>
+                        <p class="faq-a">Konstappen hämtar data direkt från VGR:s öppna API. Om du hittar felaktig information om ett specifikt verk rekommenderar vi att du kontaktar VGR direkt. Du är välkommen att mejla oss så ser vi vad vi kan göra.</p>
+                    </li>
+                    <li class="faq-item">
+                        <p class="faq-q">Appen startar inte eller kraschar – vad gör jag?</p>
+                        <p class="faq-a">Prova att stänga appen helt och starta om den. Om problemet kvarstår, kontrollera att du har den senaste versionen installerad via App Store. Hjälper inte det – hör av dig till oss via mejl nedan.</p>
+                    </li>
+                    <li class="faq-item">
+                        <p class="faq-q">Varför visas inga bilder för vissa verk?</p>
+                        <p class="faq-a">Inte alla verk i VGR:s samling har bilder tillgängliga i det öppna API:et. Det är en begränsning i källdatan och inte något appen kan påverka.</p>
+                    </li>
+                    <li class="faq-item">
+                        <p class="faq-q">Kräver appen internetuppkoppling?</p>
+                        <p class="faq-a">Ja, Konstappen kräver en aktiv internetuppkoppling för att hämta konstverk och bilder från VGR:s API.</p>
+                    </li>
+                    <li class="faq-item">
+                        <p class="faq-q">Vilka iOS-versioner stöds?</p>
+                        <p class="faq-a">Konstappen kräver iOS 16 eller senare.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <p class="section-label">KONTAKT</p>
+                <div class="contact-block">
+                    <p style="font-size: 15px; color: rgba(255,255,255,0.75);">Hittar du inte svar på din fråga? Hör av dig direkt.</p>
+                    <a href="mailto:ola@olacarlsson.com" class="contact-email">ola@olacarlsson.com</a>
+                    <p class="contact-note">Svar ges normalt inom 1–3 vardagar.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-metadata">
+                <span class="meta-item">BUILT FOR FUN</span>
+                <span class="meta-item">OLA CARLSSON © 2026</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
