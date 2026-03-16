@@ -474,6 +474,48 @@
         .error-box ul { padding-left: 1.8rem; margin-top: .4rem; }
         .error-box li { margin-top: .4rem; }
 
+        /* ── Customer info banner ── */
+        .customer-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.6rem;
+            background: var(--bg-info);
+            border: 1px solid #a8d5e8;
+            border-radius: .4rem;
+            padding: 1.2rem 1.6rem;
+            margin-bottom: 2.4rem;
+            flex-wrap: wrap;
+        }
+
+        .customer-banner-text {
+            font-size: 1.5rem;
+            color: #207187;
+            font-weight: 600;
+        }
+
+        .customer-banner-text span {
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .btn-change-customer {
+            background: #fff;
+            border: 1px solid #a8d5e8;
+            color: #207187;
+            font-family: var(--font);
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding: .6rem 1.4rem;
+            border-radius: .4rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background .15s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-change-customer:hover { background: #cce9f3; }
+
         /* ── Responsive ── */
         @media (max-width: 600px) {
             .page-wrapper { padding: 2rem 1.6rem 6rem; }
@@ -511,6 +553,13 @@
             <div class="page-header">
                 <h1>Vad gäller ditt konstärende?</h1>
                 <p>Välj den kategori som bäst beskriver ditt ärende så hjälper vi dig vidare.</p>
+            </div>
+
+            <div class="customer-banner">
+                <div class="customer-banner-text">
+                    Ärendet gäller <span>762-23423 Endoskopi i Falköping</span>
+                </div>
+                <button class="btn-change-customer" onclick="alert('Ändra kund – ej implementerat')">Ändra kund</button>
             </div>
 
             <div class="category-grid">
