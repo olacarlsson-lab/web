@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konstärende</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* ── Wizard layout ── */
+        .wizard {
+            max-width: 680px;
+            padding: 60px 0 120px;
+        }
+
+        .wizard-step {
+            display: none;
+        }
+
+        .wizard-step.active {
+            display: block;
+        }
+
+        /* ── Screen title ── */
+        .screen-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .screen-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 5vw, 2.6rem);
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            margin-bottom: 48px;
+        }
+
+        /* ── Category buttons (step 1) ── */
+        .category-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .category-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            border-top: 1px solid var(--divider);
+            color: var(--text);
+            font-family: var(--font-heading);
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            padding: 24px 0;
+            cursor: pointer;
+            letter-spacing: -0.01em;
+            transition: opacity 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-btn:last-child {
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .category-btn:hover {
+            opacity: 0.6;
+        }
+
+        .category-btn .arrow {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.4;
+        }
+
+        /* ── Form fields ── */
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-section.hidden {
+            display: none;
+        }
+
+        .field-group {
+            margin-bottom: 32px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+        }
+
+        .field-label .required-mark {
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .field-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .field-input {
+            width: 100%;
+            background: none;
+            border: 1px solid var(--divider);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 15px;
+            padding: 14px 16px;
+            outline: none;
+            transition: border-color 0.2s ease;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        .field-input:focus {
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .field-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        textarea.field-input {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ── Radio / checkbox groups ── */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border: 1px solid var(--divider);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .radio-option:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .radio-option input[type="radio"],
+        .radio-option input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--divider);
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            border-radius: 50%;
+        }
+
+        .radio-option input[type="radio"]:checked,
+        .radio-option input[type="checkbox"]:checked {
+            background: var(--text);
+            border-color: var(--text);
+        }
+
+        .radio-option input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--bg);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radio-option input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            font-size: 10px;
+            color: var(--bg);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+        }
+
+        .radio-option .option-label {
+            font-size: 15px;
+        }
+
+        .radio-option.selected {
+            border-color: var(--text);
+        }
+
+        /* ── Section divider within form ── */
+        .form-divider {
+            height: 1px;
+            background: var(--divider);
+            margin: 40px 0;
+        }
+
+        /* ── Sub-question block ── */
+        .sub-question {
+            margin-left: 0;
+            padding: 24px;
+            border-left: 2px solid var(--divider);
+            margin-top: 16px;
+        }
+
+        /* ── Navigation buttons ── */
+        .nav-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 56px;
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            padding: 16px 36px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.8;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 0;
+        }
+
+        .btn-back:hover {
+            color: var(--text);
+        }
+
+        /* ── Confirmation screen ── */
+        .confirm-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 8vw, 4rem);
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        .confirm-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            max-width: 500px;
+            margin-bottom: 48px;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 48px;
+        }
+
+        .summary-table tr {
+            border-top: 1px solid var(--divider);
+        }
+
+        .summary-table tr:last-child {
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .summary-table td {
+            padding: 14px 0;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .summary-table td:first-child {
+            color: var(--text-muted);
+            width: 45%;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding-right: 16px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .wizard {
+                padding: 40px 0 80px;
+            }
+
+            .sub-question {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <header class="main-header">
+            <div class="header-metadata">
+                <span class="meta-item">KONST / ÄRENDE</span>
+                <span class="meta-item">VGR</span>
+            </div>
+            <div class="header-divider"></div>
+        </header>
+
+        <main>
+            <div class="wizard">
+
+                <!-- ═══════════════════════════════════════════
+                     STEG 1 — Välj ärendetyp
+                ═══════════════════════════════════════════ -->
+                <div class="wizard-step active" id="step-main">
+                    <p class="screen-label">NYTT ÄRENDE</p>
+                    <h1 class="screen-title">Vad gäller ditt konstärende?</h1>
+                    <div class="category-grid">
+                        <button class="category-btn" onclick="selectCategory('ny-konst')">
+                            Ny konst <span class="arrow">→</span>
+                        </button>
+                        <button class="category-btn" onclick="selectCategory('lokalforandring')">
+                            Lokalförändring <span class="arrow">→</span>
+                        </button>
+                        <button class="category-btn" onclick="selectCategory('aterlämna')">
+                            Återlämna konst <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════
+                     NY KONST
+                ═══════════════════════════════════════════ -->
+                <div class="wizard-step" id="step-ny-konst">
+                    <p class="screen-label">NY KONST</p>
+                    <h2 class="screen-title">Berätta om ert behov</h2>
+
+                    <!-- Varför ny konst? -->
+                    <div class="field-group">
+                        <label class="field-label">
+                            Varför vill ni ha ny konst?
+                            <span class="required-mark">*</span>
+                        </label>
+                        <div class="radio-group" id="nk-anledning">
+                            <label class="radio-option">
+                                <input type="radio" name="nk-anledning" value="saknar" onchange="updateNyKonst()">
+                                <span class="option-label">Saknar konst idag</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="nk-anledning" value="byta" onchange="updateNyKonst()">
+                                <span class="option-label">Vill byta ut konst</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="nk-anledning" value="annat" onchange="updateNyKonst()">
+                                <span class="option-label">Annat skäl</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Annat skäl: ange skäl -->
+                    <div class="form-section hidden" id="nk-annat-skal">
+                        <div class="field-group">
+                            <label class="field-label">Ange skäl</label>
+                            <textarea class="field-input" name="nk-skal-text" rows="3"
+                                placeholder="Beskriv anledningen..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Saknar konst: ny verksamhet? -->
+                    <div class="form-section hidden" id="nk-ny-verksamhet-block">
+                        <div class="field-group">
+                            <label class="field-label">
+                                Är det ny verksamhet?
+                                <span class="required-mark">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="nk-ny-verk" value="ja" onchange="updateNyKonst()">
+                                    <span class="option-label">Ja</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="nk-ny-verk" value="nej" onchange="updateNyKonst()">
+                                    <span class="option-label">Nej</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ny verksamhet JA: extra fält -->
+                    <div class="form-section hidden" id="nk-oppning-block">
+                        <div class="field-group">
+                            <label class="field-label">När öppnar verksamheten?</label>
+                            <input type="text" class="field-input" name="nk-oppning"
+                                placeholder="t.ex. mars 2025 eller ett datum">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Är det en invigning planerad?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="nk-invigning" value="ja">
+                                    <span class="option-label">Ja</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="nk-invigning" value="nej">
+                                    <span class="option-label">Nej</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gemensamma fält (alltid synliga när anledning valts) -->
+                    <div class="form-section hidden" id="nk-gemensamma">
+                        <div class="field-group">
+                            <label class="field-label">Hur många rum?</label>
+                            <input type="text" class="field-input" name="nk-rum" placeholder="Antal rum">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">För vilka rum gäller det?</label>
+                            <textarea class="field-input" name="nk-vilka-rum" rows="2"
+                                placeholder="Beskriv rummen, t.ex. konferensrum 3A, receptionen..."></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Särskilda önskemål</label>
+                            <textarea class="field-input" name="nk-onskemaal" rows="3"
+                                placeholder="Eventuella önskemål om motiv, storlek, teknik..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="nav-row">
+                        <button class="btn-primary" onclick="submitForm('ny-konst')">SKICKA ÄRENDE →</button>
+                        <button class="btn-back" onclick="goBack()">← TILLBAKA</button>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════
+                     LOKALFÖRÄNDRING
+                ═══════════════════════════════════════════ -->
+                <div class="wizard-step" id="step-lokalforandring">
+                    <p class="screen-label">LOKALFÖRÄNDRING</p>
+                    <h2 class="screen-title">Berätta om förändringen</h2>
+
+                    <div class="field-group">
+                        <label class="field-label">
+                            När ska ni flytta ut?
+                            <span class="required-mark">*</span>
+                        </label>
+                        <input type="text" class="field-input" name="lf-flytta-ut"
+                            placeholder="Datum eller tidsperiod">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">
+                            När ska ni flytta in?
+                            <span class="required-mark">*</span>
+                        </label>
+                        <input type="text" class="field-input" name="lf-flytta-in"
+                            placeholder="Datum eller tidsperiod">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Hur många rum?</label>
+                        <input type="text" class="field-input" name="lf-rum" placeholder="Antal rum">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Vart ska ni flytta?</label>
+                        <input type="text" class="field-input" name="lf-vart"
+                            placeholder="Adress eller namn på lokalen">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Finns det konst i era nya lokaler?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="lf-konst-nya" value="ja">
+                                <span class="option-label">Ja</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="lf-konst-nya" value="nej">
+                                <span class="option-label">Nej</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="lf-konst-nya" value="vet-ej">
+                                <span class="option-label">Vet ej</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Är det en temporär evakuering?</label>
+                        <p class="field-hint">Ange i sådana fall under vilken tidsperiod evakueringen gäller.</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="lf-temp" value="ja" onchange="updateLokalforandring()">
+                                <span class="option-label">Ja</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="lf-temp" value="nej" onchange="updateLokalforandring()">
+                                <span class="option-label">Nej</span>
+                            </label>
+                        </div>
+                        <div class="form-section hidden" id="lf-temp-period" style="margin-top:12px;">
+                            <input type="text" class="field-input" name="lf-temp-tid"
+                                placeholder="t.ex. januari–mars 2025">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Övriga upplysningar</label>
+                        <textarea class="field-input" name="lf-ovrigt" rows="3"
+                            placeholder="Något mer vi bör känna till?"></textarea>
+                    </div>
+
+                    <div class="nav-row">
+                        <button class="btn-primary" onclick="submitForm('lokalforandring')">SKICKA ÄRENDE →</button>
+                        <button class="btn-back" onclick="goBack()">← TILLBAKA</button>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════
+                     ÅTERLÄMNA KONST
+                ═══════════════════════════════════════════ -->
+                <div class="wizard-step" id="step-aterlämna">
+                    <p class="screen-label">ÅTERLÄMNA KONST</p>
+                    <h2 class="screen-title">Berätta varför ni återlämnar</h2>
+
+                    <!-- Anledning -->
+                    <div class="field-group">
+                        <label class="field-label">
+                            Varför vill ni återlämna konst?
+                            <span class="required-mark">*</span>
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="al-anledning" value="upphör"
+                                    onchange="updateAterlämna()">
+                                <span class="option-label">Verksamheten upphör</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="al-anledning" value="skadad"
+                                    onchange="updateAterlämna()">
+                                <span class="option-label">Konsten är skadad</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="al-anledning" value="ful-gammal"
+                                    onchange="updateAterlämna()">
+                                <span class="option-label">Konsten är ful/gammal</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="al-anledning" value="annat"
+                                    onchange="updateAterlämna()">
+                                <span class="option-label">Annat</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Verksamheten upphör -->
+                    <div class="form-section hidden" id="al-upphör-block">
+                        <div class="form-divider"></div>
+                        <div class="field-group">
+                            <label class="field-label">
+                                När upphör verksamheten?
+                                <span class="required-mark">*</span>
+                            </label>
+                            <input type="text" class="field-input" name="al-upphör-datum"
+                                placeholder="Datum eller tidsperiod">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Vilken mängd gäller det?</label>
+                            <input type="text" class="field-input" name="al-upphör-mangd"
+                                placeholder="Antal konstverk">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Övriga upplysningar</label>
+                            <textarea class="field-input" name="al-upphör-ovrigt" rows="3"
+                                placeholder="Något mer vi bör känna till?"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Konsten är skadad -->
+                    <div class="form-section hidden" id="al-skadad-block">
+                        <div class="form-divider"></div>
+                        <div class="field-group">
+                            <label class="field-label">Vad är skadat?</label>
+                            <textarea class="field-input" name="al-vad-skadat" rows="2"
+                                placeholder="Beskriv skadan..."></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">
+                                Vill ni ha tillbaka samma konstverk?
+                                <span class="required-mark">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="al-tillbaka" value="ja">
+                                    <span class="option-label">Ja</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="al-tillbaka" value="nej">
+                                    <span class="option-label">Nej</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Hur är det monterat?</label>
+                            <input type="text" class="field-input" name="al-monterat"
+                                placeholder="t.ex. spik, upphäng, skruv...">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Vilken mängd gäller det?</label>
+                            <input type="text" class="field-input" name="al-skadad-mangd"
+                                placeholder="Antal konstverk">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Hur stort är konstverket?</label>
+                            <input type="text" class="field-input" name="al-storlek"
+                                placeholder="Mått i cm, t.ex. 60×80">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Finns det ett VG-nummer?</label>
+                            <input type="text" class="field-input" name="al-vgnummer"
+                                placeholder="VG-nummer om känt">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Är det skadat glas?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="al-glas" value="ja">
+                                    <span class="option-label">Ja</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="al-glas" value="nej">
+                                    <span class="option-label">Nej</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ful/gammal eller Annat -->
+                    <div class="form-section hidden" id="al-ovrigt-block">
+                        <div class="form-divider"></div>
+                        <div class="field-group">
+                            <label class="field-label">Vilken mängd gäller det?</label>
+                            <input type="text" class="field-input" name="al-ovrigt-mangd"
+                                placeholder="Antal konstverk">
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Övriga upplysningar</label>
+                            <textarea class="field-input" name="al-ovrigt-text" rows="3"
+                                placeholder="Något mer vi bör känna till?"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="nav-row">
+                        <button class="btn-primary" onclick="submitForm('aterlämna')">SKICKA ÄRENDE →</button>
+                        <button class="btn-back" onclick="goBack()">← TILLBAKA</button>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════
+                     BEKRÄFTELSE
+                ═══════════════════════════════════════════ -->
+                <div class="wizard-step" id="step-confirm">
+                    <p class="screen-label">TACK</p>
+                    <h2 class="confirm-title">Ärendet är skickat</h2>
+                    <p class="confirm-text">
+                        Vi har tagit emot ditt ärende och återkommer så snart som möjligt.
+                    </p>
+
+                    <table class="summary-table" id="summary-table">
+                        <!-- fylls i av JS -->
+                    </table>
+
+                    <button class="btn-back" onclick="resetWizard()">← NYTT ÄRENDE</button>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-metadata">
+                <span class="meta-item">KONSTÄRENDE</span>
+                <span class="meta-item">VGR</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        /* ── State ── */
+        let currentCategory = null;
+
+        /* ── Navigation ── */
+        function showStep(id) {
+            document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectCategory(cat) {
+            currentCategory = cat;
+            showStep('step-' + cat);
+        }
+
+        function goBack() {
+            showStep('step-main');
+        }
+
+        function resetWizard() {
+            // Reset all form fields
+            document.querySelectorAll('input, textarea').forEach(el => {
+                if (el.type === 'radio' || el.type === 'checkbox') {
+                    el.checked = false;
+                } else {
+                    el.value = '';
+                }
+            });
+            // Reset all conditional sections
+            document.querySelectorAll('.form-section').forEach(el => el.classList.add('hidden'));
+            // Reset radio option styling
+            document.querySelectorAll('.radio-option').forEach(el => el.classList.remove('selected'));
+            currentCategory = null;
+            showStep('step-main');
+        }
+
+        /* ── Radio option visual feedback ── */
+        document.addEventListener('change', function (e) {
+            if (e.target.type === 'radio') {
+                const group = e.target.closest('.radio-group');
+                if (group) {
+                    group.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
+                    e.target.closest('.radio-option').classList.add('selected');
+                }
+            }
+        });
+
+        /* ── Ny konst — conditional logic ── */
+        function updateNyKonst() {
+            const anledning = document.querySelector('input[name="nk-anledning"]:checked')?.value;
+            const nyVerk = document.querySelector('input[name="nk-ny-verk"]:checked')?.value;
+
+            setVisible('nk-annat-skal', anledning === 'annat');
+            setVisible('nk-ny-verksamhet-block', anledning === 'saknar');
+            setVisible('nk-oppning-block', anledning === 'saknar' && nyVerk === 'ja');
+            setVisible('nk-gemensamma', !!anledning);
+        }
+
+        /* ── Lokalförändring — conditional logic ── */
+        function updateLokalforandring() {
+            const temp = document.querySelector('input[name="lf-temp"]:checked')?.value;
+            setVisible('lf-temp-period', temp === 'ja');
+        }
+
+        /* ── Återlämna konst — conditional logic ── */
+        function updateAterlämna() {
+            const anledning = document.querySelector('input[name="al-anledning"]:checked')?.value;
+            setVisible('al-upphör-block', anledning === 'upphör');
+            setVisible('al-skadad-block', anledning === 'skadad');
+            setVisible('al-ovrigt-block', anledning === 'ful-gammal' || anledning === 'annat');
+        }
+
+        /* ── Helper ── */
+        function setVisible(id, visible) {
+            const el = document.getElementById(id);
+            if (el) el.classList.toggle('hidden', !visible);
+        }
+
+        /* ── Submit ── */
+        function submitForm(type) {
+            // Basic validation
+            let valid = true;
+            let missing = [];
+
+            if (type === 'ny-konst') {
+                const anledning = document.querySelector('input[name="nk-anledning"]:checked');
+                if (!anledning) { valid = false; missing.push('Varför vill ni ha ny konst?'); }
+                if (anledning?.value === 'saknar') {
+                    const nyVerk = document.querySelector('input[name="nk-ny-verk"]:checked');
+                    if (!nyVerk) { valid = false; missing.push('Är det ny verksamhet?'); }
+                }
+            } else if (type === 'lokalforandring') {
+                const ut = document.querySelector('[name="lf-flytta-ut"]')?.value.trim();
+                const inn = document.querySelector('[name="lf-flytta-in"]')?.value.trim();
+                if (!ut && !inn) { valid = false; missing.push('Ange minst ett av: När ska ni flytta ut / flytta in'); }
+            } else if (type === 'aterlämna') {
+                const anledning = document.querySelector('input[name="al-anledning"]:checked');
+                if (!anledning) { valid = false; missing.push('Varför vill ni återlämna konst?'); }
+                if (anledning?.value === 'skadad') {
+                    const tillbaka = document.querySelector('input[name="al-tillbaka"]:checked');
+                    if (!tillbaka) { valid = false; missing.push('Vill ni ha tillbaka samma konstverk?'); }
+                }
+                if (anledning?.value === 'upphör') {
+                    const datum = document.querySelector('[name="al-upphör-datum"]')?.value.trim();
+                    if (!datum) { valid = false; missing.push('När upphör verksamheten?'); }
+                }
+            }
+
+            if (!valid) {
+                alert('Vänligen fyll i obligatoriska fält:\n\n• ' + missing.join('\n• '));
+                return;
+            }
+
+            buildSummary(type);
+            showStep('step-confirm');
+        }
+
+        /* ── Build summary table ── */
+        function buildSummary(type) {
+            const rows = [];
+
+            if (type === 'ny-konst') {
+                const anledningVal = document.querySelector('input[name="nk-anledning"]:checked')?.value;
+                const anledningLabels = { saknar: 'Saknar konst idag', byta: 'Vill byta ut konst', annat: 'Annat skäl' };
+                rows.push(['Ärendetyp', 'Ny konst']);
+                rows.push(['Anledning', anledningLabels[anledningVal] || '–']);
+
+                if (anledningVal === 'saknar') {
+                    const nyVerk = document.querySelector('input[name="nk-ny-verk"]:checked')?.value;
+                    rows.push(['Ny verksamhet', nyVerk === 'ja' ? 'Ja' : 'Nej']);
+                    if (nyVerk === 'ja') {
+                        rows.push(['Öppnar', val('nk-oppning')]);
+                        const inv = document.querySelector('input[name="nk-invigning"]:checked')?.value;
+                        rows.push(['Invigning planerad', inv === 'ja' ? 'Ja' : inv === 'nej' ? 'Nej' : '–']);
+                    }
+                }
+                if (anledningVal === 'annat') rows.push(['Skäl', val('nk-skal-text')]);
+                rows.push(['Antal rum', val('nk-rum')]);
+                rows.push(['Vilka rum', val('nk-vilka-rum')]);
+                rows.push(['Särskilda önskemål', val('nk-onskemaal')]);
+
+            } else if (type === 'lokalforandring') {
+                rows.push(['Ärendetyp', 'Lokalförändring']);
+                rows.push(['Flytta ut', val('lf-flytta-ut')]);
+                rows.push(['Flytta in', val('lf-flytta-in')]);
+                rows.push(['Antal rum', val('lf-rum')]);
+                rows.push(['Destination', val('lf-vart')]);
+                const konst = document.querySelector('input[name="lf-konst-nya"]:checked')?.value;
+                const konstLabels = { ja: 'Ja', nej: 'Nej', 'vet-ej': 'Vet ej' };
+                rows.push(['Konst i nya lokaler', konstLabels[konst] || '–']);
+                const temp = document.querySelector('input[name="lf-temp"]:checked')?.value;
+                rows.push(['Temporär evakuering', temp === 'ja' ? 'Ja – ' + val('lf-temp-tid') : temp === 'nej' ? 'Nej' : '–']);
+                rows.push(['Övriga upplysningar', val('lf-ovrigt')]);
+
+            } else if (type === 'aterlämna') {
+                const anledningVal = document.querySelector('input[name="al-anledning"]:checked')?.value;
+                const anledningLabels = { 'upphör': 'Verksamheten upphör', skadad: 'Konsten är skadad', 'ful-gammal': 'Konsten är ful/gammal', annat: 'Annat' };
+                rows.push(['Ärendetyp', 'Återlämna konst']);
+                rows.push(['Anledning', anledningLabels[anledningVal] || '–']);
+
+                if (anledningVal === 'upphör') {
+                    rows.push(['Verksamheten upphör', val('al-upphör-datum')]);
+                    rows.push(['Mängd', val('al-upphör-mangd')]);
+                    rows.push(['Övriga upplysningar', val('al-upphör-ovrigt')]);
+                } else if (anledningVal === 'skadad') {
+                    rows.push(['Vad är skadat', val('al-vad-skadat')]);
+                    const tillbaka = document.querySelector('input[name="al-tillbaka"]:checked')?.value;
+                    rows.push(['Tillbaka samma verk', tillbaka === 'ja' ? 'Ja' : tillbaka === 'nej' ? 'Nej' : '–']);
+                    rows.push(['Montering', val('al-monterat')]);
+                    rows.push(['Mängd', val('al-skadad-mangd')]);
+                    rows.push(['Storlek', val('al-storlek')]);
+                    rows.push(['VG-nummer', val('al-vgnummer')]);
+                    const glas = document.querySelector('input[name="al-glas"]:checked')?.value;
+                    rows.push(['Skadat glas', glas === 'ja' ? 'Ja' : glas === 'nej' ? 'Nej' : '–']);
+                } else {
+                    rows.push(['Mängd', val('al-ovrigt-mangd')]);
+                    rows.push(['Övriga upplysningar', val('al-ovrigt-text')]);
+                }
+            }
+
+            const table = document.getElementById('summary-table');
+            table.innerHTML = rows
+                .filter(([, v]) => v && v !== '–' && v !== '')
+                .map(([label, value]) => `<tr><td>${label.toUpperCase()}</td><td>${escapeHtml(value)}</td></tr>`)
+                .join('');
+        }
+
+        function val(name) {
+            return document.querySelector(`[name="${name}"]`)?.value.trim() || '–';
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+
+</html>
